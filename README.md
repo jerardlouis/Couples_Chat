@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Flask and `create-react-app`
 
 ## Requirements
