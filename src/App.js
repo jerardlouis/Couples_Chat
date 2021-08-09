@@ -1,21 +1,50 @@
 import logo from './logo.svg';
 import './App.css';
+import ListItem  from './ListItem.js';
+import { useState, useRef, useEffect } from 'react';
+import io from 'socket.io-client';
+
+const socket = io(); // Connects to socket connection
 
 function App() {
+  const [messages, setMessages] = useState([]); // State variable, list of messages
+  const inputRef = useRef(null); // Reference to <input> element
+
+  function onClickButton() {
+    if (inputRef != null) {
+      const message = inputRef.current.value;
+      
+      // If your own client sends a message, we add it to the list of messages to 
+      // render it on the UI.
+      setMessages(prevMessages => [...prevMessages, message]);
+      socket.emit('chat', { message: message });
+    }
+  }
+
+  // The function inside useEffect is only run whenever any variable in the array
+  // (passed as the second arg to useEffect) changes. Since this array is empty
+  // here, then the function will only run once at the very beginning of mounting.
+  useEffect(() => {
+    // Listening for a chat event emitted by the server. If received, we
+    // run the code in the function that is passed in as the second arg
+    socket.on('chat', (data) => {
+      console.log('Chat event received!');
+      console.log(data);
+      // If the server sends a message (on behalf of another client), then we
+      // add it to the list of messages to render it on the UI.
+      setMessages(prevMessages => [...prevMessages, data.message]);
+    });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-
-        <h3>My Dear Sweet Ysabela,</h3>
-        <p>Hey baby, I love you lots</p>
-        
-        <p>I hope you're having a good day at owrk today baby</p>
-
-        <p>So far I've been having issues setting up but later I'll build the message server and database</p>
-        
-        <p>For now here's a cute gif lol</p>
-        <img src="https://media.tenor.com/images/9c36df84de37aedbeb8782a3f1c7d8bd/tenor.gif"/>
-      </header>
+    <div>
+      <h1>Chat Messages</h1>
+      
+      <ul>
+        {messages.map((item, index) => <ListItem key={index} name={item} />)}
+      </ul>
+      <input ref={inputRef} type="text" />
+      <button onClick={onClickButton}>Send</button>
     </div>
   );
 }
