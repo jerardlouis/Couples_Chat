@@ -1,0 +1,28 @@
+.login {
+    margin-top: 50px;
+    padding: 5px;
+  }
+  .login .insert {
+    border-radius: 3px;
+    border: 0.1px solid white;
+    color: white;
+    background: black;
+    font-family: "Times New Roman";
+  }
+  .login:hover .insert {
+    box-shadow: 0px 0px 5px red;
+    text-shadow: 1.5px 1.5px 2.5px red;
+  }
+  .submitButton {
+  border-radius: 5px;
+  margin-top:20px;
+  border: 0.1px solid white;
+  color: white;
+  font-family: "Times New Roman";
+  background-color: transparent;
+}
+.submitButton:hover {
+  background-color: #5c0f0a;
+  box-shadow: 0px 0px 5px red;
+  text-shadow: 1.5px 1.5px 2.5px red;
+}
