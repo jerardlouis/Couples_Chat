@@ -12,7 +12,8 @@ function App() {
   const [messages, setMessages] = useState([]); // State variable, list of messages
   const inputRef = useRef(null); // Reference to <input> element
   const [user, setUser] = useState("");
-
+  const [password, setPassword] = useState("");
+  //let password = 'true';
   useEffect(() => {
     socket.on("login", (data) => {
       //console.log(data.newUsers);
@@ -20,9 +21,13 @@ function App() {
     });
   });
 
-  const login = (userName) => {
+  const login = (userName,pass) => {
     setUser(userName);
-
+    setPassword(pass);
+    const message = userName + " joined the chat!";
+    
+    setMessages(prevMessages => [...prevMessages, message]);
+    socket.emit('chat', { message: message });
     //let newList = userList;
     //if (newList.X === "") {
       //newList.X = userName;
@@ -63,10 +68,23 @@ function App() {
       setMessages(prevMessages => [...prevMessages, data.message]);
     });
   }, []);
+  function logout() {
+    const message = user + " left the chat :c";
+    
+    setMessages(prevMessages => [...prevMessages, message]);
+    socket.emit('chat', { message: message });
+  } 
+  window.onbeforeunload = function(e) {
+    logout();
+    //socket.emit('disconnect');
+    var dialogText = 'test';
+    e.returnValue = dialogText;
+    return dialogText;
+  };
 
   return (
     <div>
-      {user !== "" ? (
+      {user !== "" && password == "iloveyou" ? (
       <div class="chat">
         <h3>Chat Messages</h3>
         <div class="box">
@@ -76,6 +94,7 @@ function App() {
         </div>
         <input ref={inputRef} type="text" />
         <button onClick={onClickButton}>Send</button>
+        
       </div>
       ) : (
       <Login login={login}/>
