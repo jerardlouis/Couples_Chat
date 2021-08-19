@@ -9,12 +9,12 @@ function Login({ login }) {
     e.preventDefault();
     login(userName);
     console.log(userName);
-    alert("Welcome to the game " + userName + "!");
+    alert("Welcome " + userName + "!");
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <img class="enter" src="https://see.fontimg.com/api/renderfont4/Xg59/eyJyIjoiZnMiLCJoIjoyMDIsInciOjIwMDAsImZzIjoxMDEsImZnYyI6IiNGRkZGRkYiLCJiZ2MiOiIjMDAwMDAwIiwidCI6MX0/RW50ZXIgWW91ciBVc2VybmFtZQ/grind-mafia.png"/>
+      <img class="enter" src="https://see.fontimg.com/api/renderfont4/xKd8/eyJyIjoiZnMiLCJoIjoxMzAsInciOjIwMDAsImZzIjo2NSwiZmdjIjoiI0ZGRkZGRiIsImJnYyI6IiMwMDAwMDAiLCJ0IjoxfQ/SmVyYWJlbGEgQ2hhdCByb29t/crucifixion-regular.png"/>
 
       <div class="login">
         <label htmlFor="name" />
@@ -28,15 +28,11 @@ function Login({ login }) {
           
         />
       </div>
-      <div>
-        <input class = "submitButton" type="submit" value="Join Game" />
+      <div class="join">
+        <input class = "submitButton" type="submit" value="Join" />
       </div>
       
-      <Socials/>
-      <p>By Jerard Dayanghirang</p>
-      <div class="image">
-        <img src="https://martincrownover.com/blog/wp-content/uploads/2009/04/particle-fire-header-ani.gif" width="1500" height="400"/>
-      </div>
+      
     </form>
     
   );

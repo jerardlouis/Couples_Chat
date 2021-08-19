@@ -1,17 +1,21 @@
 .login {
     margin-top: 50px;
-    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   .login .insert {
     border-radius: 3px;
     border: 0.1px solid white;
     color: white;
-    background: black;
+    background: pink;
     font-family: "Times New Roman";
   }
   .login:hover .insert {
-    box-shadow: 0px 0px 5px red;
-    text-shadow: 1.5px 1.5px 2.5px red;
+    background-color: #f2a1d9;
+    box-shadow: 0px 0px 5px white;
+    text-shadow: 1.5px 1.5px 2.5px white;
   }
   .submitButton {
   border-radius: 5px;
@@ -22,7 +26,19 @@
   background-color: transparent;
 }
 .submitButton:hover {
-  background-color: #5c0f0a;
-  box-shadow: 0px 0px 5px red;
-  text-shadow: 1.5px 1.5px 2.5px red;
+  background-color: #f2a1d9;
+  box-shadow: 0px 0px 5px white;
+  text-shadow: 1.5px 1.5px 2.5px white;
+}
+.join {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.enter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
