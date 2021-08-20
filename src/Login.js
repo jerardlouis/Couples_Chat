@@ -30,7 +30,7 @@ function Login({ login }) {
         />
         <input class="insert"
           placeholder="password"
-          type="text"
+          type="password"
           name="password"
           id="password"
           onChange={(e) => setPass(e.target.value)}
